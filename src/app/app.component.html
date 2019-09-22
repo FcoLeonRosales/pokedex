@@ -1,0 +1,50 @@
+<div>
+  <ul>
+    <li><a routerLink="nav">nav</a></li>
+    <li><a routerLink="home" routerLinkActive="router-link-active">home</a></li>
+    <li><a routerLink="not-found">not found</a></li>
+    <li><a routerLink="/">inicio</a></li>
+    <li></li>
+  </ul>
+</div>
+
+<div class="showPokemon">
+  <ul *ngFor="let i of pokemons">
+    <mat-card style="border-style: solid; border-width: 2px" 
+    [ngStyle]="{'border-color': OnBorderColor(i.type[0])[0]}">
+      <mat-card-header>
+        <mat-card-title>
+          <li>{{i.name}}</li>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <li>{{i.species}}</li>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+          <img style="max-width: 200px; max-height: 220px;" src="{{i.name | imageify}}">
+        <!-- <li>{{i.id}}</li>
+        <li>{{i.height}}</li>
+        <li>{{i.weight}}</li>
+        <li>{{i.abilities}}</li>
+        <li>{{i.type}}</li>
+        <li>{{i.stats.attack}}</li>
+        <li>{{i.stats.defense}}</li>
+        <li>{{i.stats.hp}}</li>
+        <li>{{i.stats.specialAtk}}</li>
+        <li>{{i.stats.specialDef}}</li>
+        <li>{{i.stats.speed}}</li>
+        <li>{{i.stats.total}}</li> -->
+      </mat-card-content>
+      <mat-card-footer>
+        <div>
+          <li *ngFor="let item of i.type" [ngStyle]="{'background': OnBorderColor(item)[0],'border-color': OnBorderColor(item)[1]}"
+          >{{item}}</li>
+        </div>
+      </mat-card-footer>
+    </mat-card>
+  </ul>
+</div>
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent = inicializador($event)">
+</mat-paginator>
+<router-outlet></router-outlet>
